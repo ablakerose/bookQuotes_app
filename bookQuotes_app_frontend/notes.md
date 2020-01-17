@@ -98,3 +98,11 @@ Use preventDefault to control form submit behavior
 Use fetch with 'GET', 'POST', 'PATCH' & 'DELETE' HTTP methods
 Create a JavaScript object with ES6 class syntax
 Instantiate JavaScript objects and call methods on them.
+
+
+If I get notice "port in use" 
+Run
+lsof -i :3000
+// this shows process id of whatever is running on that port 
+kill -9 1720
+// run that with whatever port is running
