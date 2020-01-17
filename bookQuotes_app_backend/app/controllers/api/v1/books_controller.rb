@@ -1,7 +1,7 @@
 class Api::V1::BooksController < ApplicationController
     def index
-        @books = Book.all 
-        render json: @books, status: 200
+        books = Book.all 
+        render json: books, include: :quotes
     end
 
     def show
