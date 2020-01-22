@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :books
+      #remember to omit what I'm not using if I'm only doing some of the CRUD actions
     end
   end
 end
