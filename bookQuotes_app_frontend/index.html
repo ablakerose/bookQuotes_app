@@ -4,9 +4,36 @@
         <meta charset="UTF-8"/>
         <meta name="viewpoint" content="width=device-widge, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-        <title>Document</title>
+        <link href="https://afeld.github.io/emoji-css/emoji.css" rel='stylesheet'>
+        <link rel="stylesheet" type="text/css" href="assets/styles/style.css">
+        
+        <title>BookQuote App</title>
     </head>
     <body>
+        <div class="container">
+            <h1> Book Quotes App </h1>
+            
+                <div id="books-container">
+                
+                </div>
+         <div id="new-book-container">
+                <form id="new-book-form">
+                    <input type="text" name="book-title" id="new-book-title" placeholder="Book Title">
+                    <br>
+                    <input type="text" name="book-author" id="new-book-author" placeholder="Author Name">
+                    <br>
+                    <input type="text" name="book-quote" id="new-book-quote" placeholder="Quote Text">
+                    <br>
+                    <input type="submit" value="save book">
+                </form>  
+            </div>  
+        </div>
+        </div>        
+         <script src="assets/javascript/adapters/BookAdapters.js"></script>
+         <script src="assets/javascript/components/book.js"></script>
+        <script src="assets/javascript/components/app.js"></script>
         <script src="index.js"></script>
-    </body>
+
+</body>
+
 </html>
