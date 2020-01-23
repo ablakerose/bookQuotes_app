@@ -1,7 +1,12 @@
 class Api::V1::QuotesController < ApplicationController
     def index
-        quotes = Quote.all 
-        render json: quotes
+        id = params[:book_id]
+        if id && book = Book.find_by_id(id)
+            quotes = book.quotes
+        else
+            quotes = Quotes.all
+        end
+        render json: quotes, include: :books
     end
 
     def show
@@ -11,12 +16,13 @@ class Api::V1::QuotesController < ApplicationController
     end
 
     def create
+        
         book = Quote.create(quote_params)
         render json: quote, status: 200
     end
 
     def update
-        quote = Note.find(params[:id])
+        quote = Quote.find(params[:id])
         quote.update(quote_params)
         render json: quote, status: 200
     end

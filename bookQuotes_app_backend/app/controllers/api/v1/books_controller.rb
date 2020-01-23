@@ -12,9 +12,8 @@ class Api::V1::BooksController < ApplicationController
     end
 
     def create
-        
         book = Book.create(book_params)
-        render json: book, status: 200
+        render json: book, include: :quotes
     end
 
     # def create
@@ -55,7 +54,6 @@ class Api::V1::BooksController < ApplicationController
 
     private
         def book_params
-            params.require(:book).permit(:title, :author)
-            #params.require(:book, :title, :author)
+            params.require(:book).permit(:title, :author, quotes_attributes: [:quote_text])
         end
 end
