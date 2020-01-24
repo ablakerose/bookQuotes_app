@@ -7,7 +7,7 @@ class BooksAdapter {
         return fetch(this.baseUrl).then(res => res.json()
         )
     }
-    
+
     createBook(title, author, quote) {
         const book = {
             title,
@@ -23,20 +23,21 @@ class BooksAdapter {
         }).then(res => res.json())
     }
 
-    createBookQuote(bookId){
-    //     //fetch posting to baseURL/${bookID}/quotes
+    // createBookQuote(bookId){
+    // //     //fetch posting to baseURL/${bookID}/quotes
 
-        return fetch(`${this.baseUrl}/${bookId}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-          },
-        body: JSON.stringify({ book })
-    }).then(res => res.json())
+    //     return fetch(`${this.baseUrl}/${bookId}`, {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //       },
+    //     body: JSON.stringify({ book })
+    // }).then(res => res.json())
 
-    }
+    // }
 
     updateBook(book, id) {
+        
         return fetch(`${this.baseUrl}/${id}`, {
             method: 'PATCH',
             headers: {
@@ -48,6 +49,4 @@ class BooksAdapter {
 
 }
 
-   //updateQuote() {
-
-  // }
+  

@@ -1,7 +1,7 @@
 class App {
     constructor() {
         this.books = []
-        //above is an empty array. The fetchAndLoadBooks function iterates over json and pushes book objects to. this way, I have access to array of notes in other methods by calling "this.notes"
+        //above is an empty array. The fetchAndLoadBooks function iterates over json and pushes book objects to. this way, I have access to array of books in other methods by calling "this.books"
         this.adapter = new BooksAdapter()
         this.initBindingsAndEventListeners()
         this.fetchAndLoadBooks()
@@ -17,12 +17,29 @@ class App {
         this.bookForm.addEventListener('submit', this.createBook.bind(this))
         //whenever the bookForm is submitted, the createBook function loads. 
         this.booksContainer.addEventListener('dblclick', this.handleBookClick.bind(this))
-        this.booksContainer.addEventListener('blur', this.updateBook.bind(this), true)
+        this.booksContainer.addEventListener('blur', () => {
+            if (event.target.className === "title" || event.target.className === "author") {
+                this.updateBook.bind(this), true
+            }
+        })
+        this.booksContainer.addEventListener('submit', this.handleQuoteFormSubmit)
     }
-//event propogation, event bubbling, event delegation
 
+handleQuoteFormSubmit(e){
+    e.preventDefault()
+    debugger
+    console.log(e.target)
+    //get quote text and id from e.target
+    //pass both into createBookQuote
+    // .then() rerender so we see the new quote
+
+    //  const id = htmlTag.dataset.id
+
+
+}
 //here we are using the information form the event(e). take the value of our variable newBookTitle which is the value of the "id" in the html DOM. 
-    createBook(e){
+    
+createBook(e){
         e.preventDefault()
         const title_value = this.newBookTitle.value
         const author_value = this.newBookAuthor.value
@@ -75,23 +92,13 @@ class App {
             this.render()
         })
     }
-render() {
+
+    render() {
     this.booksContainer.innerHTML = this.books.map(book => book.renderBook()).join('') 
     }
-    //since this.notes is an array, here mapping over each object to append to dom
+    //since this.books is an array, here mapping over each object to append to dom
     //here is where I should decide what KIND of dom element I want to append the book elements to
     //maybe a table. Michael suggested just doing an innerTEXT instead of inner HTML too.
-
-//  renderNewBook() {
-//     this.booksContainer.innerHTML = this.books.map(book => book.renderBook()).join('')
-//  }   
-
-renderQuoteFormTest() {
-        return `<form id="add-quote-form">
-        <input type="text" name="quote-text" id="add-quote-form" placeholder="Additional Quote">
-        <input type="submit" value="save quote">      
-        </form>`
-    }
 
 }
 
