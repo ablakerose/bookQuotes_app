@@ -23,22 +23,22 @@ class BooksAdapter {
         }).then(res => res.json())
     }
 
-    // createBookQuote(quote, bookId) {
-    // //     //fetch posting to baseURL/${bookID}/quotes
-    //     const book = {
-    //     quotes_attributes: [{quote_text: quote}]
+    createBookQuote(quote, bookId) {
+    //     //fetch posting to baseURL/${bookID}/quotes
+        const book = {
+        quotes_attributes: [{quote_text: quote}]
     
             
-    //     }
-    //     return fetch(`${this.baseUrl}/${bookId}`, {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //       },
-    //     body: JSON.stringify({ book })
-    // }).then(res => res.json())
+        }
+        return fetch(`${this.baseUrl}/${bookId}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+          },
+        body: JSON.stringify({ book })
+    }).then(res => res.json())
 
-    // }
+    }
 
     updateBook(book, id) {
         

@@ -15,7 +15,7 @@ class Book {
         const quoteForm = document.createElement("form")
         quoteForm.id = `book_id_${this.id}`
         
-        quoteForm.innerHTML= `<input type="text" name="quote-text" id="add-quote-text" placeholder="Additional Quote"> <input type="submit" value="save quote">`    
+        quoteForm.innerHTML= `<input type="text" name="quote-text" class="add-quote-text" placeholder="Additional Quote"> <input type="submit" value="save quote">`    
         return quoteForm.outerHTML
     }
 
@@ -47,19 +47,13 @@ class Book {
 
     renderBook() {
         return `<div class="book-container" id="book-${this.id}">
-                <h2 data-id=${this.id} class="title">${this.title}</h2>
-                <h2 data-id=${this.id} class="author"> by ${this.author} </h2>
+                <h2 data-id=${this.id} data-class="title-class" class="title">${this.title}</h2>
+                <h2 data-id=${this.id} data-class="author-class" class="author"> by ${this.author} </h2>
                 <ul> ${this.quotes ? this.getQuotes() : "No quotes recorded yet"}</ul>    
                 ${this.renderQuoteForm()}
                 </div>`  
         }
 
-    handleQuoteFormSubmit(e) {
-        e.preventDefault()
-        console.log('handling new quote...')
-
-
-    }
 
      
 
