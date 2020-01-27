@@ -12,31 +12,10 @@ class Api::V1::BooksController < ApplicationController
     end
 
     def create
+    
         book = Book.create(book_params)
         render json: book, include: :quotes
     end
-
-    # def create
-    #     @item = current_user.items.build(item_params)
-    #     if @item.save
-    #         redirect_to items_path
-    #     else
-    #         render :new
-    #     end
-
-    # def create
-    #     if @item
-    #         offer_price = offer_params[:offer_price] 
-    #         @offer = current_user.offers.build(item_id: @item.id, offer_price: offer_price)
-    #         if @offer.save
-    #             redirect_to user_path(current_user)
-    #             return
-    #         end
-    #     render :new
-    #     end
-    # end
-
- 
 
     def update
         book = Book.find(params[:id])
