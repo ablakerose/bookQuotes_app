@@ -23,9 +23,13 @@ class BooksAdapter {
         }).then(res => res.json())
     }
 
-    // createBookQuote(bookId){
+    // createBookQuote(quote, bookId) {
     // //     //fetch posting to baseURL/${bookID}/quotes
-
+    //     const book = {
+    //     quotes_attributes: [{quote_text: quote}]
+    
+            
+    //     }
     //     return fetch(`${this.baseUrl}/${bookId}`, {
     //     method: 'POST',
     //     headers: {

@@ -4,55 +4,64 @@ class Book {
         this.title = bookJSON.title
         this.author = bookJSON.author
         this.quotes= bookJSON.quotes 
+        this.initBindingsAndEventListeners()     
     }
 
     initBindingsAndEventListeners() {
-        this.quoteForm = document.getElementById('books-container') 
-        this.quoteForm.addEventListener('submit', handleQuoteFormSubmit)
-        // this.booksContainer.addEventListener('dblclick', this.handleBookClick.bind(this))
-        // this.booksContainer.addEventListener('blur', this.updateBook.bind(this), true)
+       
     }
-
   
-
-    // renderQuoteFormTest() {
-    //     return `<form id="add-quote-form">
-    //     <input type="text" name="quote-text" id="add-quote-text" placeholder="Additional Quote">
-    //     <input type="submit" value="save quote">      
-    //     </form>`
-    // }
-    
-    renderQuoteForm(id) {
+    renderQuoteForm() {
         const quoteForm = document.createElement("form")
-        //figure out how to add a data attribute instead
-        quoteForm.id = `book_id_${id}`
-        quoteForm.innerHTML= '<input type="text" name="quote-text" id="add-quote-text" placeholder="Additional Quote"> <input type="submit" value="save quote">'     
+        quoteForm.id = `book_id_${this.id}`
+        
+        quoteForm.innerHTML= `<input type="text" name="quote-text" id="add-quote-text" placeholder="Additional Quote"> <input type="submit" value="save quote">`    
         return quoteForm.outerHTML
     }
-//data-book-id=1
+
+    // return the ID of the first form object that has the right type of ID
+    //     findFirstBookFormID() {
+    //         const list = getElementsByTagName("form");
+    //         const results = [];
+    //         for (const i = 0; i < list.length; i++) {
+    //             const id = list[i].id;
+    //             if (id && id.search(/^book_id_/) != -1) {
+    //                 return(id);
+    //             }
+    //         }
+    //         return(null);
+    // }
+
+    // getForms() {
+    //     const result = document.getElementsByClassName("book-container")
+    //     for (const i = 0; i < result.length; i++) {
+    //        result[i]
+    //        console.log(result[i])
+    //     }        
+    // }
+
+    getQuoteFormValue() {
+        const quote_value = this.quoteForm.value
+        return quote_value
+    }
 
     renderBook() {
         return `<div class="book-container" id="book-${this.id}">
                 <h2 data-id=${this.id} class="title">${this.title}</h2>
                 <h2 data-id=${this.id} class="author"> by ${this.author} </h2>
                 <ul> ${this.quotes ? this.getQuotes() : "No quotes recorded yet"}</ul>    
-                ${this.renderQuoteForm(this.id)}   
-                </div>`
+                ${this.renderQuoteForm()}
+                </div>`  
         }
 
-        //${renderNewQuoteForm()} -- should eventually go inside renderBook()
-       
-        // return `<form id="add-quote-form">
-        // <input type="text" name="quote-text" id="add-quote-text" placeholder="Additional Quote">
-        // <input type="submit" value="save quote">      
-        // </form>`
+    handleQuoteFormSubmit(e) {
+        e.preventDefault()
+        console.log('handling new quote...')
 
-      //IF ABOVE DOESN'T WORK
-        //create a form element
-            //attach event listener to a form element
 
-            //onsubmit="handleQuoteFormSubmit()
+    }
 
+     
 
     // renderNewQuoteButton() {
 

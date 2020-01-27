@@ -9,6 +9,7 @@ class App {
 
     initBindingsAndEventListeners() {
         this.booksContainer = document.getElementById('books-container')
+            //event target, maybe add class name. does event target have class name new event form.
         this.body = document.querySelector('body')
         this.newBookTitle = document.getElementById('new-book-title')
         this.newBookAuthor = document.getElementById('new-book-author')
@@ -17,36 +18,35 @@ class App {
         this.bookForm.addEventListener('submit', this.createBook.bind(this))
         //whenever the bookForm is submitted, the createBook function loads. 
         this.booksContainer.addEventListener('dblclick', this.handleBookClick.bind(this))
-        this.booksContainer.addEventListener('blur', () => {
-            if (event.target.className === "title" || event.target.className === "author") {
-                this.updateBook.bind(this), true
-            }
-        })
-        this.booksContainer.addEventListener('submit', this.handleQuoteFormSubmit)
+        //this.booksContainer.addEventListener('focusout', this.updateBook.bind(this))
+        // this.booksContainer.addEventListener('focusout', () => {
+        //     if (className === "title editable" || className === "author editable") {
+        //         this.updateBook.bind(this)
+        //     }
+        // })
+        this.booksContainer = document.getElementById('books-container')
+        this.booksContainer.addEventListener('submit', this.handleQuoteFormSubmit.bind(this))
     }
 
-handleQuoteFormSubmit(e){
-    e.preventDefault()
-    debugger
-    console.log(e.target)
-    //get quote text and id from e.target
-    //pass both into createBookQuote
-    // .then() rerender so we see the new quote
 
-    //  const id = htmlTag.dataset.id
+    // () => {
+    //     if (event.target.className === "title" || event.target.className === "author") {
+    //         this.handleBookClick.bind(this)
 
+    // this.booksContainer.addEventListener('blur', () => {
+    //     if (event.target.className === "title" || event.target.className === "author") {
+    //         this.updateBook.bind(this), true
+    //     }
 
-}
-//here we are using the information form the event(e). take the value of our variable newBookTitle which is the value of the "id" in the html DOM. 
     
-createBook(e){
+    createBook(e) {
         e.preventDefault()
         const title_value = this.newBookTitle.value
         const author_value = this.newBookAuthor.value
         const quote_value = this.newBookQuote.value
         this.adapter.createBook(title_value, author_value, quote_value).then(book => {
-           console.log(book)
-            this.books.push(new Book(book))
+          
+            this.books.push(new Book(book) )
             this.newBookTitle.value = ''
             this.newBookAuthor.value = ''
             this.newBookQuote.value = ''
@@ -65,6 +65,7 @@ createBook(e){
  
     updateBook(e) {
         const htmlTag = e.target
+        
         htmlTag.contentEditable = 'false' 
         htmlTag.classList.remove('editable')
         const newValue = htmlTag.innerHTML
@@ -72,14 +73,8 @@ createBook(e){
         book[htmlTag.className] = newValue
         const id = htmlTag.dataset.id
         this.adapter.updateBook(book, id)
-        //.then()
-        //.catch(err => if err warn the user by upadting the dom)
-        //consider my fetch call failing. (here if the fetch call fails, the dom is still changed. you think it's updated, but user would have no idea that the fetch failed. no immediate indication that those edits were failing.)
-        //good opportunity to use the .catch for errors
     }
-
-
-//add updateQuote function, might have to change how i handle event listeners
+   
 
 
     fetchAndLoadBooks() {
@@ -95,10 +90,35 @@ createBook(e){
 
     render() {
     this.booksContainer.innerHTML = this.books.map(book => book.renderBook()).join('') 
+    } //since this.books is an array, here mapping over each object to append to dom
+
+    renderQuoteForm(id) {
+        const quoteForm = document.createElement("form")
+        quoteForm.id = `book_id_${id}`
+        
+        quoteForm.innerHTML= `<input type="text" data-id=${this.id} name="quote-text" id="add-quote-text" placeholder="Additional Quote"> <input type="submit" value="save quote">`    
+        return quoteForm.outerHTML
+    }  
+
+    handleQuoteFormSubmit(e) {
+        e.preventDefault()
+        console.log(event.target)    
+        //queryselector , input = .value
+        //grab id of book itself  using an attribute on the form itself. // use data dash getAttribute to read the value of the attribute.      
     }
-    //since this.books is an array, here mapping over each object to append to dom
-    //here is where I should decide what KIND of dom element I want to append the book elements to
-    //maybe a table. Michael suggested just doing an innerTEXT instead of inner HTML too.
+
+    // return the ID of the first form object that has the right type of ID
+    //     function findFirstBookFormID() {
+    //         const list = getElementsByTagName("form");
+    //         const results = [];
+    //         for (const i = 0; i < list.length; i++) {
+    //             const id = list[i].id;
+    //             if (id && id.search(/^book_id_/) != -1) {
+    //                 return(id);
+    //             }
+    //         }
+    //         return(null);
+    // }
 
 }
 

@@ -45,23 +45,25 @@ as i'm beginning, start with JUST the log-in process (not open to the pbulic to 
 _____________________
 MINIMUM VIABLE PRODUCT
 
-[] The application must be an HTML, CSS, and JavaScript frontend with a Rails API backend. All interactions between the client and the server must be handled asynchronously (AJAX) and use JSON as the communication format.
+[x] The application must be an HTML, CSS, and JavaScript frontend with a Rails API backend. All interactions between the client and the server must be handled asynchronously (AJAX) and use JSON as the communication format.
 
-[] The JavaScript application must use Object Oriented JavaScript (classes) to encapsulate related data and behavior.
+[x] The JavaScript application must use Object Oriented JavaScript (classes) to encapsulate related data and behavior.
 
-[] The domain model served by the Rails backend must include a resource with at least one has-many relationship. For example, if you were building an Instagram clone, you might display a list of photos with associated comments.
+[x] The domain model served by the Rails backend must include a resource with at least one has-many relationship. For example, if you were building an Instagram clone, you might display a list of photos with associated comments.
 
-[] The backend and frontend must collaborate to demonstrate Client-Server Communication. Your application should have at least 3 AJAX calls, covering at least 2 of Create, Read, Update, and Delete (CRUD). Your client-side JavaScript code must use fetch with the appropriate HTTP verb, and your Rails API should use RESTful conventions.
+The backend and frontend must collaborate to demonstrate Client-Server Communication. Your application should have at least 
+   [ ] 3 AJAX calls, covering at least 
+   [ ] 2 of Create, Read, Update, and Delete (CRUD). Your client-side JavaScript code must use fetch with the appropriate HTTP verb, and your Rails API should use RESTful conventions.
 
 JavaScript
 [ ] Use classes and functions to organize your code into reusable pieces.
-[ ] Translate JSON responses into JavaScript model objects using ES6 class or constructor function syntax.
-[ ] Use ES6 features when appropriate (e.g. arrow functions, let & const, rest and spread syntax).
+[x] Translate JSON responses into JavaScript model objects using ES6 class or constructor function syntax.
+[x] Use ES6 features when appropriate (e.g. arrow functions, let & const, rest and spread syntax).
 
 Rails
-[ ] Follow Rails MVC and RESTful conventions. That means, for example, that a request GET /puppies ought to be handled by the PuppiesController, fetch puppies from the database using a Puppy Active Record model, and return a list of puppies as JSON.
-[ ] Well-named variables and methods
-[ ] Short, single-purpose methods
+[x] Follow Rails MVC and RESTful conventions. That means, for example, that a request GET /puppies ought to be handled by the PuppiesController, fetch puppies from the database using a Puppy Active Record model, and return a list of puppies as JSON.
+[x] Well-named variables and methods
+[x] Short, single-purpose methods
 
 Git
 [ ] Aim for a large number of small commits - commit frequently!
@@ -106,3 +108,71 @@ lsof -i :3000
 // this shows process id of whatever is running on that port 
 kill -9 1720
 // run that with whatever port is running
+
+___________________
+   // this.booksContainer.addEventListener('blur', () => {
+        //     if (event.target.className === "title" || event.target.className === "author") {
+        //         this.updateBook.bind(this), true
+        //     }
+        // })
+
+____________________
+
+notes under handleQuoteFormSubmit()
+//const formTag = e.target
+        //console.log(getQuoteFormValue)
+        
+        //const book = {}
+        //const quote_value = this.book.quoteForm.value
+        //const bookId = formTag.dataset.id
+        //this.adapter.createBookQuote(quote_value, bookId) 
+        
+
+        // const htmlTag = e.target
+        // const newValue = htmlTag.innerHTML
+        // const book = {}
+        // book[htmlTag.className] = newValue
+        // const id = htmlTag.dataset.id
+        // this.adapter.updateBook(book, id)
+
+        //const title_value = this.newBookTitle.value
+
+        //get quote text and id from e.target
+        //pass both into createBookQuote
+        // .then() rerender so we see the new quote
+
+        //const id = htmlTag.dataset.id
+
+    // to get the value of the change in the form element: document.getElementById("whatever") -- get the value of that
+    // to get the id, i need to use the dataset attribute like before and then get it from e.target.
+    }
+    //here we are using the information form the event(e). take the value of our variable newBookTitle which is the value of the "id" in the html DOM. 
+
+    ___________________
+
+    // .then(function(book) {
+        //     console.log(book);
+        //     })
+        //     .catch(function(error) {
+        //       alert("Bad things! Ragnarők!");
+        //       console.log(error.message);
+        //     });
+
+        //.then()
+        //.catch(err => if err warn the user by upadting the dom)
+        //consider my fetch call failing. (here if the fetch call fails, the dom is still changed. you think it's updated, but user would have no idea that the fetch failed. no immediate indication that those edits were failing.)
+        //good opportunity to use the .catch for errors
+    }
+
+    // fetch("http://localhost:3000/dogs", configObj)
+    // .then(function(response) {
+    //   return response.json();
+    // })
+    // 
+    //.then(function(object) {
+    //   console.log(object);
+    // })
+    // .catch(function(error) {
+    //   alert("Bad things! Ragnarők!");
+    //   console.log(error.message);
+    // });
