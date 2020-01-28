@@ -17,8 +17,9 @@ class Api::V1::QuotesController < ApplicationController
 
     def create
         
-        book = Quote.create(quote_params)
-        render json: quote, status: 200
+        book = Book.find(params[:book_id])
+        quote = book.quotes.create(quote_params)
+        render json: quote,  include: :book
     end
 
     def update
@@ -37,7 +38,7 @@ class Api::V1::QuotesController < ApplicationController
 
     private
         def quote_params
-            params.require(:quote_text).permit(:book_id)
+            params.require(:quote).permit(:quote_text)
         end
 
 end
