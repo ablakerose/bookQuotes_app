@@ -24,7 +24,6 @@ class App {
         this.booksContainer = document.getElementById('books-container')
         this.booksContainer.addEventListener('submit', this.handleQuoteFormSubmit.bind(this))
     }
-
     
     createBook(e) {
         e.preventDefault()
@@ -32,7 +31,6 @@ class App {
         const author_value = this.newBookAuthor.value
         const quote_value = this.newBookQuote.value
         this.bookAdapter.createBook(title_value, author_value, quote_value).then(book => {
-          
             this.books.push(new Book(book) )
             this.newBookTitle.value = ''
             this.newBookAuthor.value = ''
@@ -79,39 +77,27 @@ class App {
     this.booksContainer.innerHTML = this.books.map(book => book.renderBook()).join('') 
     } //since this.books is an array, here mapping over each object to append to dom
 
-    renderQuoteForm(id) {
-        const quoteForm = document.createElement("form")
-        quoteForm.id = `book_id_${id}`
-        quoteForm.innerHTML= `<input type="text" data-id=${this.id} name="quote-text" class="add-quote-text" placeholder="Additional Quote"> <input type="submit" value="save quote">`    
-        return quoteForm.outerHTML
-    }  
+    // renderQuoteForm(id) {
+    //     const quoteForm = document.createElement("form")
+    //     quoteForm.setAttribute('data-id', this.id)
+    //     quoteForm.innerHTML= `<input type="text" name="quote-text" class="add-quote-text" placeholder="Additional Quote"> <input type="submit" value="save quote">`    
+    //     return quoteForm.outerHTML
+    // }  
 
     handleQuoteFormSubmit(e) {
         e.preventDefault()
         const quoteText = e.target.querySelector(".add-quote-text")
-        console.log(quoteText.value)
-        const quoteText_value = quoteText.value
-        console.log(e)
-
-        // What i want to do next is figure out how to take the text of the quote I've isolated (quote_text) and include it as another li in the book object (should use the bookId to do so)
+       
+        const quoteTextValue = quoteText.value
+        const bookId = e.target.getAttribute('data-id')  
         
-        // this.bookAdapter.addNewQuote(quoteText_value).then(book => {
-        //     this.books.push(
-                
-        //         //quoteForm.id = `book_id_${id}`)
-        //     // this.quoteText.value = ''
-        //     // this.renderAdditonalQuote()
-        // })
-    
-
-    // renderAdditonalQuote() {
-    //     this.booksContainer.innerHTML = this.books.map(book => book.renderBook()).join('') 
-    //     } //since this.books is an array, here mapping over each object to append to dom
-
-        //queryselector , input = .value
-        //grab id of book itself  using an attribute on the form itself. // use data dash getAttribute to read the value of the attribute.      
+        this.bookAdapter.createBookQuote(quoteTextValue, bookId)
+        .then(quoteTextValue => {
+            
+        const book = this.books.find(book => book.id === quoteTextValue.book.id)
+        book.quotes.push(quoteTextValue)
+        this.render()
+        })
     }
-
-
 }
 

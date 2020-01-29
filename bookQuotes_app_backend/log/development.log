@@ -19208,3 +19208,230 @@ Processing by Api::V1::BooksController#update as */*
 Completed 200 OK in 14ms (Views: 0.5ms | ActiveRecord: 3.2ms | Allocations: 2834)
 
 
+Started GET "/" for ::1 at 2020-01-28 23:06:22 -0500
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/blake/.rvm/gems/ruby-2.6.1/gems/railties-6.0.2.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/blake/.rvm/gems/ruby-2.6.1/gems/railties-6.0.2.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 56.0ms | Allocations: 316)
+Completed 200 OK in 103ms (Views: 82.1ms | ActiveRecord: 0.0ms | Allocations: 1599)
+
+
+Started GET "/api/v1/books" for ::1 at 2020-01-29 13:44:43 -0500
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (1.6ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:6:in `index'
+  [1m[36mQuote Load (2.7ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."book_id" = ?[0m  [["book_id", 84]]
+  ↳ app/controllers/api/v1/books_controller.rb:6:in `index'
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."book_id" = ?[0m  [["book_id", 85]]
+  ↳ app/controllers/api/v1/books_controller.rb:6:in `index'
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."book_id" = ?[0m  [["book_id", 86]]
+  ↳ app/controllers/api/v1/books_controller.rb:6:in `index'
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."book_id" = ?[0m  [["book_id", 87]]
+  ↳ app/controllers/api/v1/books_controller.rb:6:in `index'
+Completed 200 OK in 254ms (Views: 236.2ms | ActiveRecord: 4.9ms | Allocations: 5561)
+
+
+Started POST "/api/v1/books/84/quotes" for ::1 at 2020-01-29 13:44:51 -0500
+Processing by Api::V1::QuotesController#create as */*
+  Parameters: {"quote"=>{"quote_text"=>"test"}, "book_id"=>"84"}
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 84], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/quotes_controller.rb:20:in `create'
+  [1m[35m (2.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/quotes_controller.rb:21:in `create'
+  [1m[36mQuote Create (3.0ms)[0m  [1m[32mINSERT INTO "quotes" ("book_id", "quote_text", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["book_id", 84], ["quote_text", "test"], ["created_at", "2020-01-29 18:44:51.582228"], ["updated_at", "2020-01-29 18:44:51.582228"]]
+  ↳ app/controllers/api/v1/quotes_controller.rb:21:in `create'
+  [1m[35m (3.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/quotes_controller.rb:21:in `create'
+Completed 200 OK in 70ms (Views: 0.9ms | ActiveRecord: 9.1ms | Allocations: 3248)
+
+
+Started POST "/api/v1/books/84/quotes" for ::1 at 2020-01-29 13:47:43 -0500
+Processing by Api::V1::QuotesController#create as */*
+  Parameters: {"quote"=>{"quote_text"=>"asdf"}, "book_id"=>"84"}
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 84], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/quotes_controller.rb:20:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/quotes_controller.rb:21:in `create'
+  [1m[36mQuote Create (0.7ms)[0m  [1m[32mINSERT INTO "quotes" ("book_id", "quote_text", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["book_id", 84], ["quote_text", "asdf"], ["created_at", "2020-01-29 18:47:43.959981"], ["updated_at", "2020-01-29 18:47:43.959981"]]
+  ↳ app/controllers/api/v1/quotes_controller.rb:21:in `create'
+  [1m[35m (4.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/quotes_controller.rb:21:in `create'
+Completed 200 OK in 48ms (Views: 3.0ms | ActiveRecord: 5.0ms | Allocations: 3233)
+
+
+Started POST "/api/v1/books/87/quotes" for ::1 at 2020-01-29 13:50:42 -0500
+Processing by Api::V1::QuotesController#create as */*
+  Parameters: {"quote"=>{"quote_text"=>"asdf"}, "book_id"=>"87"}
+  [1m[36mBook Load (0.9ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 87], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/quotes_controller.rb:20:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/quotes_controller.rb:21:in `create'
+  [1m[36mQuote Create (1.1ms)[0m  [1m[32mINSERT INTO "quotes" ("book_id", "quote_text", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["book_id", 87], ["quote_text", "asdf"], ["created_at", "2020-01-29 18:50:42.801818"], ["updated_at", "2020-01-29 18:50:42.801818"]]
+  ↳ app/controllers/api/v1/quotes_controller.rb:21:in `create'
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/quotes_controller.rb:21:in `create'
+Completed 200 OK in 49ms (Views: 1.8ms | ActiveRecord: 3.3ms | Allocations: 3233)
+
+
+Started GET "/api/v1/books" for ::1 at 2020-01-29 14:07:51 -0500
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (1.8ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:6:in `index'
+  [1m[36mQuote Load (1.6ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."book_id" = ?[0m  [["book_id", 84]]
+  ↳ app/controllers/api/v1/books_controller.rb:6:in `index'
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."book_id" = ?[0m  [["book_id", 85]]
+  ↳ app/controllers/api/v1/books_controller.rb:6:in `index'
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."book_id" = ?[0m  [["book_id", 86]]
+  ↳ app/controllers/api/v1/books_controller.rb:6:in `index'
+  [1m[36mQuote Load (1.3ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."book_id" = ?[0m  [["book_id", 87]]
+  ↳ app/controllers/api/v1/books_controller.rb:6:in `index'
+Completed 200 OK in 275ms (Views: 263.0ms | ActiveRecord: 5.0ms | Allocations: 5960)
+
+
+Started POST "/api/v1/books/84/quotes" for ::1 at 2020-01-29 14:07:54 -0500
+Processing by Api::V1::QuotesController#create as */*
+  Parameters: {"quote"=>{"quote_text"=>"asdf"}, "book_id"=>"84"}
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 84], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/quotes_controller.rb:20:in `create'
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/quotes_controller.rb:21:in `create'
+  [1m[36mQuote Create (4.2ms)[0m  [1m[32mINSERT INTO "quotes" ("book_id", "quote_text", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["book_id", 84], ["quote_text", "asdf"], ["created_at", "2020-01-29 19:07:54.645247"], ["updated_at", "2020-01-29 19:07:54.645247"]]
+  ↳ app/controllers/api/v1/quotes_controller.rb:21:in `create'
+  [1m[35m (11.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/quotes_controller.rb:21:in `create'
+Completed 200 OK in 99ms (Views: 4.4ms | ActiveRecord: 16.2ms | Allocations: 3248)
+
+
+Started GET "/api/v1/books" for ::1 at 2020-01-29 14:29:30 -0500
+  [1m[35m (4.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:6:in `index'
+  [1m[36mQuote Load (0.3ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."book_id" = ?[0m  [["book_id", 84]]
+  ↳ app/controllers/api/v1/books_controller.rb:6:in `index'
+  [1m[36mQuote Load (0.1ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."book_id" = ?[0m  [["book_id", 85]]
+  ↳ app/controllers/api/v1/books_controller.rb:6:in `index'
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."book_id" = ?[0m  [["book_id", 86]]
+  ↳ app/controllers/api/v1/books_controller.rb:6:in `index'
+  [1m[36mQuote Load (0.1ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."book_id" = ?[0m  [["book_id", 87]]
+  ↳ app/controllers/api/v1/books_controller.rb:6:in `index'
+Completed 200 OK in 264ms (Views: 217.9ms | ActiveRecord: 5.6ms | Allocations: 16929)
+
+
+Started POST "/api/v1/books/84/quotes" for ::1 at 2020-01-29 14:29:34 -0500
+Processing by Api::V1::QuotesController#create as */*
+  Parameters: {"quote"=>{"quote_text"=>"test"}, "book_id"=>"84"}
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 84], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/quotes_controller.rb:20:in `create'
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/quotes_controller.rb:21:in `create'
+  [1m[36mQuote Create (0.8ms)[0m  [1m[32mINSERT INTO "quotes" ("book_id", "quote_text", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["book_id", 84], ["quote_text", "test"], ["created_at", "2020-01-29 19:29:34.524825"], ["updated_at", "2020-01-29 19:29:34.524825"]]
+  ↳ app/controllers/api/v1/quotes_controller.rb:21:in `create'
+  [1m[35m (16.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/quotes_controller.rb:21:in `create'
+Completed 200 OK in 31ms (Views: 1.1ms | ActiveRecord: 17.6ms | Allocations: 3622)
+
+
+Started POST "/api/v1/books/84/quotes" for ::1 at 2020-01-29 14:30:24 -0500
+Processing by Api::V1::QuotesController#create as */*
+  Parameters: {"quote"=>{"quote_text"=>"asdf"}, "book_id"=>"84"}
+  [1m[36mBook Load (0.9ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 84], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/quotes_controller.rb:20:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/quotes_controller.rb:21:in `create'
+  [1m[36mQuote Create (1.0ms)[0m  [1m[32mINSERT INTO "quotes" ("book_id", "quote_text", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["book_id", 84], ["quote_text", "asdf"], ["created_at", "2020-01-29 19:30:24.066536"], ["updated_at", "2020-01-29 19:30:24.066536"]]
+  ↳ app/controllers/api/v1/quotes_controller.rb:21:in `create'
+  [1m[35m (2.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/quotes_controller.rb:21:in `create'
+Completed 200 OK in 16ms (Views: 1.0ms | ActiveRecord: 4.0ms | Allocations: 3252)
+
+
+Started PATCH "/api/v1/books/84" for ::1 at 2020-01-29 14:30:26 -0500
+Processing by Api::V1::BooksController#update as */*
+  Parameters: {"book"=>{"author"=>" by  by Sered  "}, "id"=>"84"}
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 84], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/books_controller.rb:21:in `update'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/books_controller.rb:22:in `update'
+  [1m[36mBook Update (1.7ms)[0m  [1m[33mUPDATE "books" SET "author" = ?, "updated_at" = ? WHERE "books"."id" = ?[0m  [["author", " by  by Sered  "], ["updated_at", "2020-01-29 19:30:26.209300"], ["id", 84]]
+  ↳ app/controllers/api/v1/books_controller.rb:22:in `update'
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/books_controller.rb:22:in `update'
+Completed 200 OK in 16ms (Views: 0.6ms | ActiveRecord: 7.7ms | Allocations: 2980)
+
+
+Started PATCH "/api/v1/books/84" for ::1 at 2020-01-29 14:30:32 -0500
+Processing by Api::V1::BooksController#update as */*
+  Parameters: {"book"=>{"author"=>" by Sered  "}, "id"=>"84"}
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 84], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/books_controller.rb:21:in `update'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/books_controller.rb:22:in `update'
+  [1m[36mBook Update (1.5ms)[0m  [1m[33mUPDATE "books" SET "author" = ?, "updated_at" = ? WHERE "books"."id" = ?[0m  [["author", " by Sered  "], ["updated_at", "2020-01-29 19:30:32.043095"], ["id", 84]]
+  ↳ app/controllers/api/v1/books_controller.rb:22:in `update'
+  [1m[35m (2.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/books_controller.rb:22:in `update'
+Completed 200 OK in 23ms (Views: 1.3ms | ActiveRecord: 4.3ms | Allocations: 2852)
+
+
+Started PATCH "/api/v1/books/85" for ::1 at 2020-01-29 14:30:39 -0500
+Processing by Api::V1::BooksController#update as */*
+  Parameters: {"book"=>{"author"=>" by Audre Lorde "}, "id"=>"85"}
+  [1m[36mBook Load (1.0ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 85], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/books_controller.rb:21:in `update'
+  [1m[35m (0.8ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/books_controller.rb:22:in `update'
+  [1m[36mBook Update (0.4ms)[0m  [1m[33mUPDATE "books" SET "author" = ?, "updated_at" = ? WHERE "books"."id" = ?[0m  [["author", " by Audre Lorde "], ["updated_at", "2020-01-29 19:30:39.370668"], ["id", 85]]
+  ↳ app/controllers/api/v1/books_controller.rb:22:in `update'
+  [1m[35m (2.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/books_controller.rb:22:in `update'
+Completed 200 OK in 26ms (Views: 0.6ms | ActiveRecord: 4.4ms | Allocations: 2838)
+
+
+Started PATCH "/api/v1/books/85" for ::1 at 2020-01-29 14:30:41 -0500
+Processing by Api::V1::BooksController#update as */*
+  Parameters: {"book"=>{"author"=>" by Lorde "}, "id"=>"85"}
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 85], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/books_controller.rb:21:in `update'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/books_controller.rb:22:in `update'
+  [1m[36mBook Update (0.7ms)[0m  [1m[33mUPDATE "books" SET "author" = ?, "updated_at" = ? WHERE "books"."id" = ?[0m  [["author", " by Lorde "], ["updated_at", "2020-01-29 19:30:41.719982"], ["id", 85]]
+  ↳ app/controllers/api/v1/books_controller.rb:22:in `update'
+  [1m[35m (13.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/books_controller.rb:22:in `update'
+Completed 200 OK in 45ms (Views: 1.2ms | ActiveRecord: 14.1ms | Allocations: 2836)
+
+
+Started GET "/api/v1/books" for ::1 at 2020-01-29 14:30:55 -0500
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:6:in `index'
+  [1m[36mQuote Load (0.4ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."book_id" = ?[0m  [["book_id", 84]]
+  ↳ app/controllers/api/v1/books_controller.rb:6:in `index'
+  [1m[36mQuote Load (0.3ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."book_id" = ?[0m  [["book_id", 85]]
+  ↳ app/controllers/api/v1/books_controller.rb:6:in `index'
+  [1m[36mQuote Load (0.2ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."book_id" = ?[0m  [["book_id", 86]]
+  ↳ app/controllers/api/v1/books_controller.rb:6:in `index'
+  [1m[36mQuote Load (0.6ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."book_id" = ?[0m  [["book_id", 87]]
+  ↳ app/controllers/api/v1/books_controller.rb:6:in `index'
+Completed 200 OK in 58ms (Views: 56.0ms | ActiveRecord: 1.9ms | Allocations: 6327)
+
+
+Started GET "/api/v1/books" for ::1 at 2020-01-29 14:30:58 -0500
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.5ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:6:in `index'
+  [1m[36mQuote Load (0.3ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."book_id" = ?[0m  [["book_id", 84]]
+  ↳ app/controllers/api/v1/books_controller.rb:6:in `index'
+  [1m[36mQuote Load (0.5ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."book_id" = ?[0m  [["book_id", 85]]
+  ↳ app/controllers/api/v1/books_controller.rb:6:in `index'
+  [1m[36mQuote Load (0.1ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."book_id" = ?[0m  [["book_id", 86]]
+  ↳ app/controllers/api/v1/books_controller.rb:6:in `index'
+  [1m[36mQuote Load (0.3ms)[0m  [1m[34mSELECT "quotes".* FROM "quotes" WHERE "quotes"."book_id" = ?[0m  [["book_id", 87]]
+  ↳ app/controllers/api/v1/books_controller.rb:6:in `index'
+Completed 200 OK in 42ms (Views: 39.9ms | ActiveRecord: 1.7ms | Allocations: 6328)
+
+
